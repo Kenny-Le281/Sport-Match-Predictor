@@ -1,0 +1,11 @@
+HomeTeam,AwayTeam,HomeTeamPoints,AwayTeamPoints,HomeWinLast5Games,AwayWinLast5Games,VenueType,GameResult
+TeamA,TeamB,85,81,3,2,Indoor,Win
+TeamB,TeamC,78,76,2,3,Outdoor,Loss
+TeamC,TeamD,92,85,4,1,Indoor,Win
+TeamD,TeamA,88,89,3,4,Outdoor,Loss
+TeamA,TeamC,83,80,3,2,Indoor,Win
+TeamB,TeamD,79,77,2,3,Outdoor,Loss
+TeamC,TeamA,91,88,4,1,Indoor,Win
+TeamD,TeamB,86,84,3,4,Outdoor,Loss
+TeamA,TeamD,90,82,3,2,Indoor,Win
+TeamC,TeamB,87,79,4,1,Indoor,Win
