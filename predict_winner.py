@@ -15,8 +15,25 @@ print("Dataset Preview:")
 print(data.head())
 
 # Step 3: Preprocess the data
-# Encode categorical features (HomeTeam, AwayTeam, VenueType) using one-hot encoding
-data = pd.get_dummies(data, columns=["HomeTeam", "AwayTeam", "VenueType"], drop_first=True)
+# Adding game day as a feature
+data['GameDay'] = pd.to_datetime(data['GameDate']).dt.dayofweek  # Monday = 0, Sunday = 6
+
+# Adding month as a feature
+data['GameMonth'] = pd.to_datetime(data['GameDate']).dt.month
+
+# Recent performance features (example for win percentage over last 5 games)
+data['HomeTeam_WinPerc_Last5'] = data.groupby('HomeTeam')['GameResult'].rolling(window=5).mean().reset_index(0, drop=True)
+data['AwayTeam_WinPerc_Last5'] = data.groupby('AwayTeam')['GameResult'].rolling(window=5).mean().reset_index(0, drop=True)
+
+# Fill any NaN values that may have resulted from rolling mean calculation
+data.fillna(0, inplace=True)
+
+# Drop the original GameDate column after feature extraction
+data.drop('GameDate', axis=1, inplace=True)
+
+print("New Features Preview:")
+print(data.head())
+
 
 # Map the target column (GameResult) to binary values (Win = 1, Loss = 0)
 data['GameResult'] = data['GameResult'].map({'Win': 1, 'Loss': 0})
